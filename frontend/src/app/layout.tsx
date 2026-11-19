@@ -4,8 +4,8 @@ import QueryProvider from '@/lib/query-provider';
 import { AuthProvider } from '@/lib/auth-context';
 
 export const metadata: Metadata = {
-  title: 'BK Delivery — Sistema Empresarial de Comidas y Domicilios',
-  description: 'Gestión integral de ventas, punto de venta, inventario, finanzas, caja y domicilios con tecnología empresarial.',
+  title: 'BK Delivery - Sistema Empresarial de Comidas y Domicilios',
+  description: 'Gestion integral de ventas, punto de venta, inventario, finanzas, caja y domicilios.',
 };
 
 export default function RootLayout({

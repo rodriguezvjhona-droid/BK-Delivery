@@ -9,8 +9,8 @@ import api from '@/lib/api';
 import { useAuth } from '@/lib/auth-context';
 
 const loginSchema = z.object({
-  email: z.string().email('Ingrese un correo electrónico válido'),
-  password: z.string().min(6, 'La contraseña debe tener al menos 6 caracteres'),
+  email: z.string().email('Ingrese un correo electronico valido'),
+  password: z.string().min(6, 'La contrasena debe tener al menos 6 caracteres'),
 });
 
 type LoginFormData = z.infer<typeof loginSchema>;
@@ -40,9 +40,10 @@ export default function LoginPage() {
       const response = await api.post('/auth/login', data);
       const { accessToken, user } = response.data;
       login(accessToken, user);
-    } catch (err: any) {
+    } catch (err: unknown) {
+      const e = err as { response?: { data?: { message?: string } } };
       setErrorMsg(
-        err.response?.data?.message || 'Error al iniciar sesión. Verifique sus credenciales.',
+        e.response?.data?.message || 'Error al iniciar sesion. Verifique sus credenciales.',
       );
     } finally {
       setLoading(false);
@@ -76,7 +77,7 @@ export default function LoginPage() {
               BK DELIVERY
             </h2>
             <p className="text-xs font-semibold uppercase tracking-widest text-bk-gold mt-1">
-              Plataforma Empresarial Gastronómica
+              Plataforma Empresarial Gastronomica
             </p>
           </div>
 
@@ -90,7 +91,7 @@ export default function LoginPage() {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <div>
               <label className="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">
-                Correo Electrónico Corporativo
+                Correo Electronico Corporativo
               </label>
               <div className="relative">
                 <Mail className="w-5 h-5 text-gray-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -108,7 +109,7 @@ export default function LoginPage() {
 
             <div>
               <label className="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">
-                Contraseña de Seguridad
+                Contrasena de Seguridad
               </label>
               <div className="relative">
                 <Lock className="w-5 h-5 text-gray-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -140,10 +141,10 @@ export default function LoginPage() {
             </button>
           </form>
 
-          {/* Accesos rápidos de prueba */}
+          {/* Accesos rapidos de prueba */}
           <div className="mt-8 pt-6 border-t border-bk-border">
             <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-400 text-center mb-3">
-              Cuentas demo para verificación
+              Cuentas demo para verificacion
             </p>
             <div className="grid grid-cols-3 gap-2">
               <button
@@ -176,7 +177,7 @@ export default function LoginPage() {
 
         {/* Footer info */}
         <p className="text-center text-[11px] text-gray-400 mt-6">
-          BK Delivery Enterprise © 2026. Todos los derechos reservados.
+          BK Delivery Enterprise 2026. Todos los derechos reservados.
         </p>
       </div>
     </div>

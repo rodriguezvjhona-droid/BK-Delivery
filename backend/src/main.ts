@@ -14,10 +14,10 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
   const port = configService.get<number>('PORT', 4000);
 
-  // Configuración global de prefijo de API
+  // Prefijo global de API
   app.setGlobalPrefix('api');
 
-  // CORS habilitado para el frontend de Next.js
+  // CORS para el frontend Next.js
   app.enableCors({
     origin: true,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
@@ -39,11 +39,11 @@ async function bootstrap() {
   // Filtro global de excepciones
   app.useGlobalFilters(new AllExceptionsFilter());
 
-  // Documentación OpenAPI / Swagger
+  // Documentacion OpenAPI / Swagger
   const swaggerConfig = new DocumentBuilder()
     .setTitle('BK Delivery - API Empresarial')
     .setDescription(
-      'Sistema integral para administración de negocio gastronómico: Ventas, POS, Inventario, Caja, Facturación e Impresión, Domicilios y Finanzas.',
+      'Sistema integral para administracion de negocio gastronomico: Ventas, POS, Inventario, Caja, Facturacion e Impresion, Domicilios y Finanzas.',
     )
     .setVersion('1.0.0')
     .addBearerAuth()
@@ -56,18 +56,19 @@ async function bootstrap() {
     },
   });
 
-  // Ejecución automática de semillas iniciales si la base de datos está limpia
+  // Ejecucion automatica de semillas iniciales
   try {
     const dataSource = app.get(DataSource);
     await runSeeds(dataSource);
-  } catch (err: any) {
-    logger.warn(`Nota sobre semillas: ${err.message}`);
+  } catch (err: unknown) {
+    const e = err as Error;
+    logger.warn(`Nota sobre semillas: ${e.message}`);
   }
 
   await app.listen(port);
   logger.log(`=======================================================`);
-  logger.log(`🚀 Servidor BK Delivery Backend corriendo en puerto: ${port}`);
-  logger.log(`📖 Documentación Swagger disponible en: http://localhost:${port}/api/docs`);
+  logger.log(`BK Delivery Backend corriendo en puerto: ${port}`);
+  logger.log(`Documentacion Swagger: http://localhost:${port}/api/docs`);
   logger.log(`=======================================================`);
 }
 
