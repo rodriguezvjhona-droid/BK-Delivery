@@ -1,4 +1,4 @@
-# 🥨 BK DELIVERY — SISTEMA EMPRESARIAL DE GESTIÓN GASTRONÓMICA & DOMICILIOS
+# 🥨 BK DELIVERY — SISTEMA EMPRESARIAL DE GESTIÓN GASTRONÓMICA 
 
 BK Delivery es un sistema empresarial integral y robusto diseñado para la administración operativa, financiera, de inventario, punto de venta (POS), control de caja y domicilios de un negocio gastronómico con inspiración de cocina alemana gourmet.
 
